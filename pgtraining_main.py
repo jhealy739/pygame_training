@@ -1,13 +1,15 @@
 import sys
-
 import pygame
+from settings import Settings
 
 def run_game():
     #Initialize the game and create a screen object
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
+    ai_settings = Settings()
+
+    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Again!?!?")
-    bg_color = (230, 230, 230)
+    bg_color = (ai_settings.bg_color)
 
     #Start the main loop for the game
     while True:
