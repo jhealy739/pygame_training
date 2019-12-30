@@ -22,8 +22,8 @@ class Ship():
         self.moving_up = False
         self.moving_down = False
 
-    def blitme(self):
-        #Check movement flags and then draw the ship at its current location.
+    def update(self):
+        #Update the ships rect position based on movement flags
         if self.moving_right == True:
             self.rect.centerx += 1
 
@@ -35,5 +35,7 @@ class Ship():
 
         elif self.moving_down == True:
             self.rect.bottom += 1
-            
+
+    def blitme(self):
+        #Check movement flags and then draw the ship at its current location.
         self.screen.blit(self.image, self.rect)
