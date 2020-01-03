@@ -1,6 +1,35 @@
 import sys
 import pygame
 
+
+def check_keydown_events(event, ship):
+    #Check key down events
+    if event.key == pygame.K_RIGHT:
+        ship.moving_right = True
+
+    elif event.key == pygame.K_LEFT:
+        ship.moving_left = True
+
+    elif event.key == pygame.K_UP:
+        ship.moving_up = True
+
+    elif event.key == pygame.K_DOWN:
+        ship.moving_down = True
+
+def check_keyup_events(event, ship):
+    #Check key up events
+    if event.key == pygame.K_RIGHT:
+        ship.moving_right = False
+
+    elif event.key == pygame.K_LEFT:
+        ship.moving_left = False
+
+    elif event.key == pygame.K_UP:
+        ship.moving_up = False
+
+    elif event.key == pygame.K_DOWN:
+        ship.moving_down = False
+
 def check_events(ship):
     #Respond to keybpresses and mouse events
     for event in pygame.event.get():
@@ -10,31 +39,11 @@ def check_events(ship):
 
             #Check key down events
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    ship.moving_right = True
-
-                elif event.key == pygame.K_LEFT:
-                    ship.moving_left = True
-
-                elif event.key == pygame.K_UP:
-                    ship.moving_up = True
-
-                elif event.key == pygame.K_DOWN:
-                    ship.moving_down = True
+                check_keydown_events(event, ship)
 
             #Check key up events
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
-                    ship.moving_right = False
-
-                elif event.key == pygame.K_LEFT:
-                    ship.moving_left = False
-
-                elif event.key == pygame.K_UP:
-                    ship.moving_up = False
-
-                elif event.key == pygame.K_DOWN:
-                    ship.moving_down = False
+                check_keyup_events(event, ship)
 
 def update_screen(bg_color, screen, ship):
     #Redraw the screen during each pass through the loop.
