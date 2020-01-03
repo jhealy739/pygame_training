@@ -24,16 +24,16 @@ class Ship():
 
     def update(self):
         #Update the ships rect position based on movement flags
-        if self.moving_right == True:
+        if ((self.moving_right) & (self.rect.right < self.screen_rect.right)):
             self.rect.centerx += 1
 
-        elif self.moving_left == True:
+        if ((self.moving_left) & (self.rect.left > self.screen_rect.left)):
             self.rect.centerx -= 1
 
-        elif self.moving_up == True:
+        if ((self.moving_up) & (self.rect.top > self.screen_rect.top)):
             self.rect.bottom -= 1
 
-        elif self.moving_down == True:
+        if ((self.moving_down) & (self.rect.bottom < self.screen_rect.bottom)):
             self.rect.bottom += 1
 
     def blitme(self):
