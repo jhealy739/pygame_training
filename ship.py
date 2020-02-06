@@ -8,7 +8,7 @@ class Ship():
         self.screen = screen
 
         #Load the ship image and get its rect.
-        self.image = pygame.image.load('ship.bmp')
+        self.image = pygame.image.load('C:\\Users\\jheal\\Documents\\Programming\\pygame_training\\ship.bmp')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
@@ -24,28 +24,47 @@ class Ship():
         self.moving_up = False
         self.moving_down = False
 
-        #Set the ship speed from Settings class
-        self.speed = .5
-
-        print (self.pos_x)
+        #Set the ship speed and velocity
+        self.speed = 0.001
+        self.xvelocity = 0.0
+        self.yvelocity = 0.0
 
 
     def update(self):
+
         #Update the ships rect position based on movement flags
-        if ((self.moving_right) & (self.rect.right < self.screen_rect.right)):
-            self.pos_x += self.speed
+        if (self.moving_right) & (self.xvelocity < 1.5):
+            self.xvelocity += self.speed
+            #self.pos_x += self.xspeed
+            #self.rect.centerx = self.pos_x
+
+        if (self.moving_left) & (self.xvelocity > -1.5):
+            self.xvelocity -= self.speed
+            #self.pos_x -= self.xspeed
+            #self.rect.centerx = self.pos_x
+
+        if (self.moving_up) & (self.yvelocity > -1.5):
+            self.yvelocity -= self.speed
+            #self.rect.centery = self.pos_y
+
+        if (self.moving_down) & (self.yvelocity < 1.5):
+            self.yvelocity += self.speed
+            #self.rect.centery = self.pos_y
+
+        if (self.xvelocity >= 0) & (self.rect.right < self.screen_rect.right):
+            self.pos_x += abs(self.xvelocity)
             self.rect.centerx = self.pos_x
 
-        if ((self.moving_left) & (self.rect.left > self.screen_rect.left)):
-            self.pos_x -= self.speed
+        if (self.xvelocity <= 0) & (self.rect.left > self.screen_rect.left):
+            self.pos_x -= abs(self.xvelocity)
             self.rect.centerx = self.pos_x
-
-        if ((self.moving_up) & (self.rect.top > self.screen_rect.top)):
-            self.pos_y -= self.speed
+            
+        if (self.yvelocity <= 0) & (self.rect.top > self.screen_rect.top):
+            self.pos_y -= abs(self.yvelocity)
             self.rect.centery = self.pos_y
 
-        if ((self.moving_down) & (self.rect.bottom < self.screen_rect.bottom)):
-            self.pos_y += self.speed
+        if (self.yvelocity >= 0) & (self.rect.bottom < self.screen_rect.bottom):
+            self.pos_y += abs(self.yvelocity)
             self.rect.centery = self.pos_y
 
     def blitme(self):
