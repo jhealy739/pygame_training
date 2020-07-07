@@ -2,9 +2,9 @@ import pygame
 from pygame.sprite import Sprite
 import random
 
-class Ship():
+class Tree(Sprite):
 
-    def __init__(self, screen):
+    def __init__(self, setting, screen, ship):
         #Initialize the tree and sets it's starting location
         #bottom rect will always be one pixel above the top of the screen
         #centerx is a random value between screen_rect.left and screen_rect.right
